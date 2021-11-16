@@ -21,25 +21,19 @@ void DFS_f(int** graph, bool* visited, int st, int n)
 			DFS_f(graph, visited, r, n);
 }
 
-void Create_matrix() {
+/*int Create_matrix() {
 	int start, n, t = clock();
 
-	cout << "Задание 1" << endl;
+	cout << "Р—Р°РґР°РЅРёРµ 1" << endl;
 
-	cout << "Количество вершин > "; cin >> n;
-
-	bool* visited = new bool[n];
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ > "; cin >> n;
 
 	int** matrix;
 	matrix = (int**)malloc(n * sizeof(int*));
-	for (int i = 0; i < n; ++i) {
-		//matrix[i] = new int[n];
-		visited[i] = false;
-	}
 
 	int s = 1;
 	srand(time(NULL));
-	for (int i = 0; i < n; i++) // создание матрицы
+	for (int i = 0; i < n; i++) // СЃРѕР·РґР°РЅРёРµ РјР°С‚СЂРёС†С‹
 	{
 		matrix[i] = (int*)malloc(n * sizeof(int));
 		matrix[i][i] = 0;
@@ -56,13 +50,13 @@ void Create_matrix() {
 		s++;
 	}
 	s = 1;
-	for (int i = 0; i < n; i++) // неориентированный граф
+	for (int i = 0; i < n; i++) // РЅРµРѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅС‹Р№ РіСЂР°С„
 	{
 		for (int j = s; j < n; j++)
 			matrix[j][i] = matrix[i][j];
 		s++;
 	}
-	cout << "Matrix"; // вывод матрицы на экран
+	cout << "Matrix"; // РІС‹РІРѕРґ РјР°С‚СЂРёС†С‹ РЅР° СЌРєСЂР°РЅ
 	for (int i = 0; i < n; i++)
 	{
 		cout << endl;
@@ -72,28 +66,27 @@ void Create_matrix() {
 		}
 	}
 	cout << endl;
-	cout << "Стартовая вершина > "; cin >> start;
-	cout << "Порядок обхода: ";
-	DFS_f(matrix, visited, start - 1, n);
+	cout << "РЎС‚Р°СЂС‚РѕРІР°СЏ РІРµСЂС€РёРЅР° > "; cin >> start;
+	cout << "РџРѕСЂСЏРґРѕРє РѕР±С…РѕРґР°: ";
 
-	delete[]visited;
+	//delete[]visited;
 
-	//DFS_stack(matrix, visited, start - 1, n);
+	cout << "\nРўР°РєС‚С‹:" << ((float)t / CLOCKS_PER_SEC) << "\n";
+	return n, **matrix, start;
+}*/
 
-	cout << "\nТакты:" << ((float)t / CLOCKS_PER_SEC) << "\n";
-	system("pause");
-}
 
 void sp_smej() {
 	int n, m;
-	cout << "Списки смежности" << endl;
-	cin >> n >> m; // строки и столбцы
+	cout << endl;
+	cout << "РЎРїРёСЃРєРё СЃРјРµР¶РЅРѕСЃС‚Рё" << endl;
+	cin >> n >> m; // СЃС‚СЂРѕРєРё Рё СЃС‚РѕР»Р±С†С‹
 
-	//иницилизируем список смежности и массив посещенных вершин
+	//РёРЅРёС†РёР»РёР·РёСЂСѓРµРј СЃРїРёСЃРѕРє СЃРјРµР¶РЅРѕСЃС‚Рё Рё РјР°СЃСЃРёРІ РїРѕСЃРµС‰РµРЅРЅС‹С… РІРµСЂС€РёРЅ
 	vector<vector<int>> adj_list(n, vector<int>());
 	vis.resize(n, false);
 
-	//ввод ребер
+	//РІРІРѕРґ СЂРµР±РµСЂ
 	for (int i = 0; i < m; i++) {
 		int x, y;
 		cin >> x >> y;
@@ -102,7 +95,7 @@ void sp_smej() {
 	}
 	cout << endl;
 
-	dfs_spis(0, adj_list); //поиск в глубину
+	dfs_spis(0, adj_list); //РїРѕРёСЃРє РІ РіР»СѓР±РёРЅСѓ
 
 }
 
@@ -114,74 +107,70 @@ void dfs_spis(int u, const vector<vector<int>>& matrix_adjacency) {
 	cout << "out " << u + 1 << endl;
 }
 
-/*void vector_matrix() {
 
-	int n;
 
-	vector<vector<int>> mainV;
+void main()
+{
+    system("chcp 1251"); system("cls");
+	int start, n, t = clock();
 
-	cout << "Количество вершин > "; cin >> n;
-	cout << endl;
+	cout << "Р—Р°РґР°РЅРёРµ 1" << endl;
 
-	mainV.resize(n);
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ > "; cin >> n;
+
+	int** matrix;
+	matrix = (int**)malloc(n * sizeof(int*));
+
 	int s = 1;
-	for (int i = 0; i < n; i++) {
-		mainV[i].resize(n);
-		for (int j = s; j < n; j++) {
-			if ((rand() % 100) > 10) {
-				int temp = 0;
-				mainV[i][j] = temp;
+	srand(time(NULL));
+	for (int i = 0; i < n; i++) // СЃРѕР·РґР°РЅРёРµ РјР°С‚СЂРёС†С‹
+	{
+		matrix[i] = (int*)malloc(n * sizeof(int));
+		matrix[i][i] = 0;
+		for (int j = s; j < n; j++)
+		{
+			if (rand() % 100 > 10)
+			{
+				matrix[i][j] = 0;
 			}
 			else {
-				int temps = 1;
-				mainV[i][j] = temps;
+				matrix[i][j] = 1;
 			}
 		}
 		s++;
 	}
 	s = 1;
-	
-	for (int i = 0; i < n; i++) {
-		for (int j = s; j < n; j++) {
-			mainV[j][i] = mainV[i][j];
-		}
+	for (int i = 0; i < n; i++) // РЅРµРѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅС‹Р№ РіСЂР°С„
+	{
+		for (int j = s; j < n; j++)
+			matrix[j][i] = matrix[i][j];
 		s++;
 	}
-
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			cout << mainV[i][j] << " ";
-		}
-		cout << endl;
-	}
-}*/
-
-/*void DFS_stack(int** graph, bool* visited, int st, int n)
-{
-	stack<int> S;
-	vector<int> v(n);
-	int t;
-	S.push(n);
-	v[n]++;
-	cout << n + 1 << " ";
-	while (!S.empty())
+	cout << "Matrix"; // РІС‹РІРѕРґ РјР°С‚СЂРёС†С‹ РЅР° СЌРєСЂР°РЅ
+	for (int i = 0; i < n; i++)
 	{
-		t = S.top();
-		S.pop();
-		for (int i = n - 1; i > 0; i--)
-			if (graph[t][i] && !v[i])
-			{
-				S.push(i);
-				v[i]++;
-				cout << i + 1 << " ";
-			}
+		cout << endl;
+		for (int j = 0; j < n; j++)
+		{
+			cout << matrix[i][j] << " ";
+		}
 	}
-}*/
+	cout << endl;
+	cout << "РЎС‚Р°СЂС‚РѕРІР°СЏ РІРµСЂС€РёРЅР° > " << 1 << endl; 
+	cout << "РџРѕСЂСЏРґРѕРє РѕР±С…РѕРґР°: ";
 
-void main()
-{
-    system("chcp 1251"); system("cls");
-	Create_matrix();
-	//vector_matrix();
+	//delete[]visited;
+	bool* visited = new bool[n];
+	cout << "\nРўР°РєС‚С‹:" << ((float)t / CLOCKS_PER_SEC) << "\n";
+	for (int i = 0; i < n; i++) {
+		bool* visited = new bool[n];
+		for (int i = 0; i < n; ++i) {
+			visited[i] = false;
+		}
+		DFS_f(matrix, visited, i, n);
+		cout << endl;
+		delete[] visited;
+	}
+	system("pause");
 	sp_smej();
 }
